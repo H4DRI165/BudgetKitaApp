@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".transaction.expense.ExpenseFragment">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="640dp">
+
+            <Button
+                android:id="@+id/expense_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expenseText"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/_9" />
+
+            <Button
+                android:id="@+id/expense_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expenseText"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/expense_9"
+                android:text="@string/_8" />
+
+            <Button
+                android:id="@+id/expense_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expenseText"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/expense_8"
+                android:text="@string/_7" />
+
+            <Button
+                android:id="@+id/expense_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_9"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/_6" />
+
+            <Button
+                android:id="@+id/expense_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_8"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/expense_6"
+                android:text="@string/_5" />
+
+            <Button
+                android:id="@+id/expense_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_7"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/expense_5"
+                android:text="@string/_4" />
+
+            <Button
+                android:id="@+id/expense_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_4"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/expense_2"
+                android:text="@string/_1" />
+
+            <Button
+                android:id="@+id/expense_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_5"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/expense_3"
+                android:text="@string/_2" />
+
+            <Button
+                android:id="@+id/expense_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_6"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/_3" />
+
+            <Button
+                android:id="@+id/expense_decimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:text="." />
+
+            <Button
+                android:id="@+id/expense_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_2"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="47dp"
+                android:layout_toEndOf="@+id/expense_decimal"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/expense_equal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_1"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="47dp"
+                android:layout_toEndOf="@+id/expense_0"
+                android:text="=" />
+
+            <Button
+                android:id="@+id/expense_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expenseText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/expense_7"
+                android:text="+" />
+
+            <Button
+                android:id="@+id/expense_multiply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_minus"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/expense_1"
+                android:text="x" />
+
+            <Button
+                android:id="@+id/expense_divide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_multiply"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="48dp"
+                android:layout_toEndOf="@+id/expense_equal"
+                android:text="÷" />
+
+            <Button
+                android:id="@+id/expense_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_plus"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/expense_4"
+                android:text="-" />
+
+
+            <TextView
+                android:id="@+id/expenseText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/result"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="-108dp"
+                android:background="@drawable/box_total"
+                android:gravity="end"
+                android:padding="10dp"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/expenseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_decimal"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:text="Date:"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+
+
+            <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="219dp"
+                android:layout_marginEnd="2dp"
+                android:layout_toEndOf="@+id/expenseText"
+                android:src="@drawable/baseline_delete_24" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_category"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="299dp" />
+
+            <TextView
+                android:id="@+id/expense_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/expense_name"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:background="@drawable/box_category"
+                android:text="Expense Category"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/expense_location"
+                android:layout_width="wrap_content"
+                android:layout_height="41dp"
+                android:layout_below="@+id/expense_category"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/box_category"
+                android:gravity="center"
+                android:text="Location"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:padding="8dp"/>
+
+            <EditText
+                android:id="@+id/expense_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="Expense Name"
+                android:background="@drawable/edittext_border"
+                android:padding="10dp"/>
+
+        <Button
+            android:id="@+id/expenseSave"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/expenseDate"
+            android:textSize="20dp"
+            android:text="SAVE" />
+    </RelativeLayout>
+</ScrollView>

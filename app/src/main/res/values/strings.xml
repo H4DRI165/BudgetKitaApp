@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Budget Kita</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="don_t_have_an_acount_sign_up_here">Don’t have an acount? Sign up here</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="welcome">Welcome</string>
+    <string name="enter_email">Enter email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="reset_password">Reset Password</string>
+    <!-- to toggle the open close button of the navigation drawer -->
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="_8">8</string>
+    <string name="_7">7</string>
+    <string name="_6">6</string>
+    <string name="_5">5</string>
+    <string name="_4">4</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_9">9</string>
+    <string name="rm_0">RM 0.00</string>
+    <string name="expense">Expense</string>
+    <string name="col1">Entry</string>
+    <string name="col2">Income</string>
+    <string name="col3">Expense</string>
+    <string name="row1Entry">Income</string>
+    <string name="row1Income">Rm100</string>
+
+    <string-array name="duration_options">
+        <item>Today</item>
+        <item>All</item>
+        <item>Last Week</item>
+        <item>Last Month</item>
+        <item>Date Range</item>
+    </string-array>
+
+
+</resources>

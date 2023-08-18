@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".transaction.income.IncomeFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".transaction.income.IncomeFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="640dp">
+
+            <Button
+                android:id="@+id/income_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/incomeText"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/_9" />
+
+            <Button
+                android:id="@+id/income_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/incomeText"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/income_9"
+                android:text="@string/_8" />
+
+            <Button
+                android:id="@+id/income_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/incomeText"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/income_8"
+                android:text="@string/_7" />
+
+            <Button
+                android:id="@+id/income_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_9"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/_6" />
+
+            <Button
+                android:id="@+id/income_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_8"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/income_6"
+                android:text="@string/_5" />
+
+            <Button
+                android:id="@+id/income_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_7"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/income_5"
+                android:text="@string/_4" />
+
+            <Button
+                android:id="@+id/income_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_4"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/income_2"
+                android:text="@string/_1" />
+
+            <Button
+                android:id="@+id/income_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_5"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/income_3"
+                android:text="@string/_2" />
+
+            <Button
+                android:id="@+id/income_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_6"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/_3" />
+
+            <Button
+                android:id="@+id/income_decimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:text="." />
+
+            <Button
+                android:id="@+id/income_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_2"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="47dp"
+                android:layout_toEndOf="@+id/income_decimal"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/income_equal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_1"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="47dp"
+                android:layout_toEndOf="@+id/income_0"
+                android:text="=" />
+
+            <Button
+                android:id="@+id/income_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/incomeText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/income_7"
+                android:text="+" />
+
+            <Button
+                android:id="@+id/income_multiply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_minus"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/income_1"
+                android:text="x" />
+
+            <Button
+                android:id="@+id/income_divide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_multiply"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="48dp"
+                android:layout_toEndOf="@+id/income_equal"
+                android:text="÷" />
+
+            <Button
+                android:id="@+id/income_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_plus"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/income_4"
+                android:text="-" />
+
+
+            <TextView
+                android:id="@+id/incomeText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/result"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-160dp"
+                android:background="@drawable/box_total"
+                android:gravity="end"
+                android:padding="10dp"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/incomeDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_decimal"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:text="Date:"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/incomeSave"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/incomeDate"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:text="SAVE" />
+
+
+            <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="171dp"
+                android:layout_marginEnd="4dp"
+                android:layout_toEndOf="@+id/incomeText"
+                android:src="@drawable/baseline_delete_24" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_category"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="299dp" />
+
+            <TextView
+                android:id="@+id/income_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/income_name"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/box_category"
+                android:padding="8dp"
+                android:gravity="center"
+                android:text="Income Category"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/income_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:hint="Income Name"
+                android:inputType="text"
+                android:background="@drawable/edittext_border"
+                android:padding="8dp"/>
+
+        </RelativeLayout>
+    </FrameLayout>
+</ScrollView>
