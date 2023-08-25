@@ -3,6 +3,7 @@ package com.example.budgetkitaapp.transaction.viewTransaction;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.budgetkitaapp.R;
-import com.example.budgetkitaapp.transaction.EditTransaction;
+import com.example.budgetkitaapp.transaction.editTransaction.EditTransaction;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,29 @@ public class TransactionDetail extends AppCompatActivity {
 
     TextView tvEntry, tvNote, tvCategory, tvTotal, tvDate, tvLocation, txtLocation;
     private FirebaseAuth mAuth;
+    private static final int REQUEST_CODE_DONE_UPDATE = 111;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_DONE_UPDATE && resultCode == Activity.RESULT_OK) {
+            // Handle the updated data from the resultIntent
+            String updatedName = data.getStringExtra("updateName");
+            String updatedCategory = data.getStringExtra("updateCategory");
+            String updatedAmount = data.getStringExtra("updateAmount");
+            String updatedDate = data.getStringExtra("updateDate");
+
+            // Update your UI or perform other actions with the updated data
+
+            tvNote.setText(updatedName);
+            tvCategory.setText(updatedCategory);
+            tvTotal.setText(updatedAmount);
+            tvDate.setText(updatedDate);
+
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,7 +272,7 @@ public class TransactionDetail extends AppCompatActivity {
         edit.putExtra("entry", entry);
         edit.putExtra("incomeId", incomeId);
         edit.putExtra("expenseId", expenseId);
-        startActivity(edit);
+        startActivityForResult(edit, 111);
     }
 
 

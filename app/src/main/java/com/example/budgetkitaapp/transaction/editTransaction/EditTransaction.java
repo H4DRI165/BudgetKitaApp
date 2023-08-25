@@ -1,4 +1,4 @@
-package com.example.budgetkitaapp.transaction;
+package com.example.budgetkitaapp.transaction.editTransaction;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,12 +9,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.dashboard.DashboardFragment;
 import com.example.budgetkitaapp.databinding.ActivityEditTransactionBinding;
-import com.example.budgetkitaapp.databinding.ActivityHomeBinding;
 import com.example.budgetkitaapp.debt.DebtFragment;
 import com.example.budgetkitaapp.other.OtherFragment;
 import com.example.budgetkitaapp.transaction.expense.ExpenseFragment;
@@ -27,6 +29,9 @@ public class EditTransaction extends AppCompatActivity {
     private boolean isFragmentTransactionInProgress = false;
     private Fragment currentFragment;
 
+    String incomeId, expenseId;
+    String selectedEntry;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +39,11 @@ public class EditTransaction extends AppCompatActivity {
         setContentView(R.layout.activity_edit_transaction);
 
         String entry = getIntent().getStringExtra("entry");
-        String incomeId = getIntent().getStringExtra("incomeId");
-        String expenseId = getIntent().getStringExtra("expenseId");
+        selectedEntry = entry; // Store the selected entry
+
+        incomeId = getIntent().getStringExtra("incomeId");
+        expenseId = getIntent().getStringExtra("expenseId");
+
 
         if (entry.equals("Income")) {
             disableExpenseMenuItem();

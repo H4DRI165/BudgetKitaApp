@@ -109,12 +109,17 @@ public class ExpenseFragment extends Fragment {
         // Call assignVariable() and pass v as a parameter
         assignVariable(v);
 
-        /* Get the category string from Intent extras
-        String category = "";
-        if (getArguments() != null) {
-            category = getArguments().getString("category", "");
-            eCategory.setText("Category" +category);
-        }*/
+        //Retrieve the arguments
+        Bundle args = getArguments();
+        if(args != null){
+            String entry = args.getString("entry");
+            String expenseId = args.getString("expenseId");
+
+            // Set the 'entry' to the iName TextView
+            eName.setText(entry);
+        }
+
+
 
         Bundle extras = getArguments();
         if (extras != null) {
