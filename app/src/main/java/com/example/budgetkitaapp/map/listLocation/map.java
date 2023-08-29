@@ -1,4 +1,4 @@
-package com.example.budgetkitaapp.map.saveLocation;
+package com.example.budgetkitaapp.map.listLocation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +17,8 @@ import android.widget.Toast;
 import com.example.budgetkitaapp.HomeActivity;
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.adapter.UserLocationAdapter;
-import com.example.budgetkitaapp.other.OtherFragment;
+import com.example.budgetkitaapp.map.saveLocation.AddLocation;
+import com.example.budgetkitaapp.map.saveLocation.userLocation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

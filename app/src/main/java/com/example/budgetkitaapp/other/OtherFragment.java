@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.login.MainActivity;
-import com.example.budgetkitaapp.map.saveLocation.map;
+import com.example.budgetkitaapp.map.listLocation.map;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

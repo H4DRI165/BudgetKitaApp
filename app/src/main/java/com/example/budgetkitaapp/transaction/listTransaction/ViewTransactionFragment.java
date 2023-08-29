@@ -1,4 +1,4 @@
-package com.example.budgetkitaapp.transaction.fragment;
+package com.example.budgetkitaapp.transaction.listTransaction;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -89,22 +89,26 @@ public class ViewTransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_view_transaction, container, false);
 
-        //Initialize variable
-        rv1 = v.findViewById(R.id.recycler_view);
-        startDate = v.findViewById(R.id.startDate);
-        endDate = v.findViewById(R.id.endDate);
-        btnFilter = v.findViewById(R.id.filterButton);
-        durationSpinner = v.findViewById(R.id.durationSpinner);
-        pieChart = v.findViewById(R.id.pieChart);
+        // Initialize Firebase Authentication
+        mAuth = FirebaseAuth.getInstance();
 
         // Set up Firebase Database reference
         databaseRef = FirebaseDatabase.getInstance().getReference().child("Accounts");
 
-        // Initialize Firebase Authentication
-        mAuth = FirebaseAuth.getInstance();
+        //Initialize variable
+        assignVariable(v);
 
+        //Create array
         pieEntryList = new ArrayList<>();
         setUpChart();
+
+        //Get data from Firebase
+        getListTransaction(v);
+
+        return v;
+    }
+
+    private void getListTransaction(View v){
 
         // Check if user is authenticated
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -259,7 +263,15 @@ public class ViewTransactionFragment extends Fragment {
                 }
             });
         }
-        return v;
+    }
+
+    private void assignVariable(View v){
+        rv1 = v.findViewById(R.id.recycler_view);
+        startDate = v.findViewById(R.id.startDate);
+        endDate = v.findViewById(R.id.endDate);
+        btnFilter = v.findViewById(R.id.filterButton);
+        durationSpinner = v.findViewById(R.id.durationSpinner);
+        pieChart = v.findViewById(R.id.pieChart);
     }
 
     private void setUpChart() {
@@ -656,5 +668,11 @@ public class ViewTransactionFragment extends Fragment {
 
     private interface TransactionHistoryCallback {
         void onTransactionHistoryLoaded(List<TransactionHistory> transactionList);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getListTransaction(getView()); // Fetch and update the value in case there update
     }
 }

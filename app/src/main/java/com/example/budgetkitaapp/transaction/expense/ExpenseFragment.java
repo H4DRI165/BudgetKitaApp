@@ -18,10 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.budgetkitaapp.map.saveLocation.map;
+import com.example.budgetkitaapp.map.listLocation.map;
 import com.example.budgetkitaapp.R;
-import com.example.budgetkitaapp.map.viewLocation.viewLocation;
-import com.example.budgetkitaapp.transaction.income.IncomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

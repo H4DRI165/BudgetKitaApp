@@ -10,9 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardTotalBudget"
@@ -22,14 +24,16 @@
             android:layout_marginTop="56dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="@android:color/transparent"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="0dp"
-            app:cardMaxElevation="0dp"
             app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="1dp"
+            app:cardElevation="1dp"
+            app:cardMaxElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
             <TextView
                 android:id="@+id/tvProfit"
@@ -39,7 +43,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Profit/Loss:"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                />
 
             <TextView
                 android:id="@+id/tvCalculate"
@@ -60,9 +65,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="@android:color/transparent"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="0dp"
+            app:cardCornerRadius="1dp"
+            app:cardElevation="1dp"
             app:cardMaxElevation="0dp"
+            app:cardUseCompatPadding="true"
             app:cardPreventCornerOverlap="true"
             app:layout_constraintEnd_toEndOf="@+id/cardTotalBudget"
             app:layout_constraintHorizontal_bias="0.029"
@@ -99,9 +105,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="@android:color/transparent"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="0dp"
+            app:cardCornerRadius="1dp"
+            app:cardElevation="1dp"
             app:cardMaxElevation="0dp"
+            app:cardUseCompatPadding="true"
             app:cardPreventCornerOverlap="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

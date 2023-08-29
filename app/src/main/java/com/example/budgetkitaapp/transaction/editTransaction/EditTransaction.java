@@ -5,22 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.budgetkitaapp.R;
-import com.example.budgetkitaapp.dashboard.DashboardFragment;
 import com.example.budgetkitaapp.databinding.ActivityEditTransactionBinding;
-import com.example.budgetkitaapp.debt.DebtFragment;
-import com.example.budgetkitaapp.other.OtherFragment;
 import com.example.budgetkitaapp.transaction.expense.ExpenseFragment;
-import com.example.budgetkitaapp.transaction.fragment.TransactionFragment;
 import com.example.budgetkitaapp.transaction.income.IncomeFragment;
 
 public class EditTransaction extends AppCompatActivity {

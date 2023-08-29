@@ -1,4 +1,4 @@
-package com.example.budgetkitaapp.transaction.fragment;
+package com.example.budgetkitaapp.transaction.hostActivity;
 
 import android.os.Bundle;
 
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.databinding.FragmentTransactionBinding;
 import com.example.budgetkitaapp.transaction.expense.ExpenseFragment;
+import com.example.budgetkitaapp.transaction.listTransaction.ViewTransactionFragment;
 import com.example.budgetkitaapp.transaction.income.IncomeFragment;
 
 public class TransactionFragment extends Fragment {

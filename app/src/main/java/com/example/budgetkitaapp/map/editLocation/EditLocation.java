@@ -14,9 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.budgetkitaapp.R;
-import com.example.budgetkitaapp.map.saveLocation.AddLocation;
-import com.example.budgetkitaapp.map.saveLocation.MapFragment;
-import com.example.budgetkitaapp.map.saveLocation.map;
 import com.example.budgetkitaapp.map.saveLocation.userLocation;
 import com.example.budgetkitaapp.map.viewLocation.viewLocation;
 import com.google.android.gms.maps.GoogleMap;

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".map.saveLocation.map">
+    tools:context=".map.listLocation.map">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLocation"

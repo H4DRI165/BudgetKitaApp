@@ -9,9 +9,9 @@ import android.os.Bundle;
 
 import com.example.budgetkitaapp.dashboard.DashboardFragment;
 import com.example.budgetkitaapp.databinding.ActivityHomeBinding;
-import com.example.budgetkitaapp.debt.DebtFragment;
+import com.example.budgetkitaapp.debt.listDebt.DebtFragment;
 import com.example.budgetkitaapp.other.OtherFragment;
-import com.example.budgetkitaapp.transaction.fragment.TransactionFragment;
+import com.example.budgetkitaapp.transaction.hostActivity.TransactionFragment;
 
 public class HomeActivity extends AppCompatActivity {
 

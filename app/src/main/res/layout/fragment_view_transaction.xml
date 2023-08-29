@@ -94,7 +94,6 @@
         <TableRow
             android:background="@color/orange">
 
-
             <TextView
                 android:text="Entry"
                 android:textSize="14dp"
