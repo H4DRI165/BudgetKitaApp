@@ -26,12 +26,6 @@
     <string name="_3">3</string>
     <string name="_9">9</string>
     <string name="rm_0">RM 0.00</string>
-    <string name="expense">Expense</string>
-    <string name="col1">Entry</string>
-    <string name="col2">Income</string>
-    <string name="col3">Expense</string>
-    <string name="row1Entry">Income</string>
-    <string name="row1Income">Rm100</string>
 
     <string-array name="duration_options">
         <item>Today</item>

@@ -1,5 +1,6 @@
 package com.example.budgetkitaapp.debt.listDebt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,8 +26,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class DebtFragment extends Fragment {
@@ -39,6 +46,7 @@ public class DebtFragment extends Fragment {
     private DatabaseReference debtRef;
     private List<Debt> debtList = new ArrayList<>(); // Initialize the list
     private DebtAdapter adapter;
+    private Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -127,7 +135,6 @@ public class DebtFragment extends Fragment {
         });
     }
 
-
     private void showListDebt(){
 
         debtList.clear();
@@ -147,12 +154,32 @@ public class DebtFragment extends Fragment {
                     // Create a Debt object or data structure to hold this data
                     Debt debt = new Debt(debtName, debtTotal, debtDate, debtStatus);
 
-                    // Add the Debt object to a List or data structure for RecyclerView
+                    // Add the Debt object to a List or data structure for sorting later
                     debtList.add(debt);
                 }
 
-                // Update RecyclerView adapter with the new data
+                // Sort the debtList in descending order based on debtDate
+                Collections.sort(debtList, new Comparator<Debt>() {
+                    @Override
+                    public int compare(Debt debt1, Debt debt2) {
+                        // Parse the date strings to Date objects for comparison
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+                        try {
+                            Date date1 = sdf.parse(debt1.getDebtDate());
+                            Date date2 = sdf.parse(debt2.getDebtDate());
+
+                            // Compare in descending order
+                            return date2.compareTo(date1);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        return 0;
+                    }
+                });
+
+                // Update RecyclerView adapter with the new sorted data
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -160,8 +187,8 @@ public class DebtFragment extends Fragment {
                 // Handle error
             }
         });
-
     }
+
     @Override
     public void onResume() {
         super.onResume();

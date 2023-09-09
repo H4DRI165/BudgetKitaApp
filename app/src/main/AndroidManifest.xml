@@ -18,7 +18,7 @@
         android:theme="@style/Theme.BudgetKitaApp"
         tools:targetApi="31">
         <activity
-            android:name=".adapter.viewDetail.debtDetail"
+            android:name=".debt.viewDetail.debtDetail"
             android:exported="false" />
         <activity
             android:name=".debt.addDebt.AddDebt"
