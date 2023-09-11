@@ -1,4 +1,4 @@
-package com.example.budgetkitaapp.map.saveLocation;
+package com.example.budgetkitaapp.map.AddLocation;
 
 import java.io.Serializable;
 

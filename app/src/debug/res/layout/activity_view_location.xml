@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical"
-            tools:context=".map.saveLocation.AddLocation">
+            tools:context=".map.AddLocation.AddLocation">
 
             <FrameLayout
                 android:id="@+id/mapView"

@@ -1,6 +1,4 @@
-package com.example.budgetkitaapp.map.saveLocation;
-
-import static android.content.Context.LOCATION_SERVICE;
+package com.example.budgetkitaapp.map.AddLocation;
 
 import android.Manifest;
 import android.app.AlertDialog;

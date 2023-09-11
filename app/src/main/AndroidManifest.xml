@@ -44,7 +44,7 @@
             android:name=".map.viewLocation.MapDetailFragment"
             android:exported="true" />
         <activity
-            android:name=".map.saveLocation.AddLocation"
+            android:name=".map.AddLocation.AddLocation"
             android:exported="false" />
         <activity
             android:name=".map.listLocation.map"

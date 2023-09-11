@@ -17,8 +17,8 @@ import android.widget.Toast;
 import com.example.budgetkitaapp.HomeActivity;
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.adapter.UserLocationAdapter;
-import com.example.budgetkitaapp.map.saveLocation.AddLocation;
-import com.example.budgetkitaapp.map.saveLocation.userLocation;
+import com.example.budgetkitaapp.map.AddLocation.AddLocation;
+import com.example.budgetkitaapp.map.AddLocation.userLocation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -150,6 +150,12 @@ public class map extends AppCompatActivity implements UserLocationAdapter.Locati
             startActivity(intent);
         }
         //super.onBackPressed();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchLocations(); // Fetch and update the value in case there update
     }
 
 }
