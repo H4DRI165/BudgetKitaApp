@@ -254,5 +254,7 @@ public class DebtFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getDebtAmount();
+        getDebtThisMonth();
+        showListDebt();
     }
 }

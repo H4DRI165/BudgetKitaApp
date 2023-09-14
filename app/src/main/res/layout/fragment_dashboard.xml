@@ -20,121 +20,189 @@
             android:id="@+id/cardTotalBudget"
             android:layout_width="match_parent"
             android:layout_height="95dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
             android:backgroundTint="@android:color/transparent"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
             app:cardCornerRadius="1dp"
             app:cardElevation="1dp"
             app:cardMaxElevation="0dp"
+            app:cardPreventCornerOverlap="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tvProfit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="Profit/Loss:"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                />
+            <!-- Use a ConstraintLayout to arrange views -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvCalculate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal"
-                android:text="@string/rm_0"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                <!-- TextView for "Total Debt" -->
+                <TextView
+                    android:id="@+id/tvProfit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profit/Loss:"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed" />
 
+                <!-- Guideline to create space between tvDebt and tvCalculate -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <!-- TextView for the calculated value -->
+                <TextView
+                    android:id="@+id/tvCalculate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rm_0"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
+
+        <!-- Second CardView (Below the first CardView) -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardTotalProfit"
             android:layout_width="match_parent"
             android:layout_height="95dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:backgroundTint="@android:color/transparent"
             app:cardCornerRadius="1dp"
             app:cardElevation="1dp"
             app:cardMaxElevation="0dp"
-            app:cardUseCompatPadding="true"
             app:cardPreventCornerOverlap="true"
-            app:layout_constraintEnd_toEndOf="@+id/cardTotalBudget"
-            app:layout_constraintHorizontal_bias="0.029"
-            app:layout_constraintStart_toStartOf="@+id/cardTotalBudget"
-            app:layout_constraintTop_toBottomOf="@+id/cardTotalBudget">
+            app:layout_constraintTop_toBottomOf="@id/cardTotalBudget"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Income"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+            <!-- Use a ConstraintLayout to arrange views -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/iTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal"
-                android:text="RM 0.0"
-                android:textColor="#4CFF00"
-                android:textStyle="bold"
-                android:textSize="20dp" />
+                <!-- TextView for "Total Debt" -->
+                <TextView
+                    android:id="@+id/txtIncome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Income:"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed" />
 
+                <!-- Guideline to create space between tvDebt and tvCalculate -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
+                <!-- TextView for the calculated value -->
+                <TextView
+                    android:id="@+id/iTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rm_0"
+                    android:textColor="@color/incomeColor"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-
+        <!-- Second CardView (Below the first CardView) -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardTotalExpenses"
             android:layout_width="match_parent"
             android:layout_height="95dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:backgroundTint="@android:color/transparent"
             app:cardCornerRadius="1dp"
             app:cardElevation="1dp"
             app:cardMaxElevation="0dp"
-            app:cardUseCompatPadding="true"
             app:cardPreventCornerOverlap="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/cardTotalProfit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardTotalProfit">
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Expense"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+            <!-- Use a ConstraintLayout to arrange views -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/eTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal"
-                android:text="RM 0.0"
-                android:textColor="#F44336"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                <!-- TextView for "Total Debt" -->
+                <TextView
+                    android:id="@+id/txtExpense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expense:"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed" />
 
+                <!-- Guideline to create space between tvDebt and tvCalculate -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <!-- TextView for the calculated value -->
+                <TextView
+                    android:id="@+id/eTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rm_0"
+                    android:textColor="@color/expenseColor"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart"

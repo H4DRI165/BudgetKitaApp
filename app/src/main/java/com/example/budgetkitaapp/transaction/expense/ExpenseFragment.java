@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.budgetkitaapp.debt.addDebt.AddDebt;
 import com.example.budgetkitaapp.map.listLocation.map;
 import com.example.budgetkitaapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,14 +40,17 @@ public class ExpenseFragment extends Fragment {
     private Button eAdd, eMinus, eMultiply, eDivide, eEqual, eDecimal,eSave;
     private TextView eTotal, eName,eDate, eCategory, eLocation;
     private ImageView eDelete;
+
     private final char ADDITION = '+';
     private final char SUBTRACTION = '-';
     private final char MULTIPLICATION = '*';
     private final char DIVISION = '/';
     private final char EQU = 0;
+
     private double val1 = Double.NaN;
     private double val2;
     private char ACTION;
+
     private FirebaseAuth mAuth;
     int decimal = 0;
     private static final int REQUEST_CODE = 5;
@@ -220,7 +224,7 @@ public class ExpenseFragment extends Fragment {
             public void onClick(View view) {
                 String input = eTotal.getText().toString();
                 if (input.equals("")) {
-                    Toast.makeText(getActivity(), "Please enter a numbers", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Cannot start with operation symbol", Toast.LENGTH_SHORT).show();
                 } else {
                     compute();
                     ACTION = ADDITION;
@@ -233,7 +237,6 @@ public class ExpenseFragment extends Fragment {
 
                 }
             }
-
         });
 
         eMinus.setOnClickListener(new View.OnClickListener() {
@@ -242,7 +245,7 @@ public class ExpenseFragment extends Fragment {
 
                 String input = eTotal.getText().toString();
                 if (input.equals("")) {
-                    Toast.makeText(getActivity(), "Please enter a numbers", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Cannot start with negative number", Toast.LENGTH_SHORT).show();
                 } else {
                     compute();
                     ACTION = SUBTRACTION;
@@ -262,7 +265,7 @@ public class ExpenseFragment extends Fragment {
 
                 String input = eTotal.getText().toString();
                 if (input.equals("")) {
-                    Toast.makeText(getActivity(), "Please enter a numbers", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Cannot start with operation symbol", Toast.LENGTH_SHORT).show();
                 } else {
                     compute();
                     ACTION = MULTIPLICATION;
@@ -282,7 +285,7 @@ public class ExpenseFragment extends Fragment {
 
                 String input = eTotal.getText().toString();
                 if (input.equals("")) {
-                    Toast.makeText(getActivity(), "Please enter a number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Cannot start with operation symbol", Toast.LENGTH_SHORT).show();
                 } else {
                     compute();
                     ACTION = DIVISION;
@@ -625,7 +628,7 @@ public class ExpenseFragment extends Fragment {
         //Check if the field have value
         //If not it will point to the empty value
         if(expenseName.isEmpty()){
-            eName.setError("Please enter income name");
+            eName.setError("Please enter expense name");
             eName.requestFocus();
             return;
         }
@@ -645,6 +648,18 @@ public class ExpenseFragment extends Fragment {
             return;
         }
 
+        // Check if debtAmount is zero
+        if (expenseTotal.equals("0")) {
+            Toast.makeText(getActivity(), "Expense amount cannot be zero", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check if debtAmount contains +, /, or *
+        if (expenseTotal.contains("+") || expenseTotal.contains("÷") || expenseTotal.contains("*") || expenseTotal.contains("-")) {
+            Toast.makeText(getActivity(), "Expense amount cannot contain +, -, ÷, or *", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Remove "Category: " prefix from incomeCat
         expenseCat = expenseCat.substring("Category: ".length());
         expenseLocation = expenseLocation.substring("Location: ".length());
@@ -655,7 +670,7 @@ public class ExpenseFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Successfully add expense!", Toast.LENGTH_SHORT).show();
 
                     eName.setText(null);
                     eCategory.setText("Please select category");

@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.databinding.FragmentIncomeBinding;
+
+import com.example.budgetkitaapp.debt.addDebt.AddDebt;
 import com.example.budgetkitaapp.map.editLocation.EditLocation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,18 +47,21 @@ public class IncomeFragment extends Fragment {
     private Button iAdd, iMinus, iMultiply, iDivide, iEqual, iDecimal,iSave;
     private TextView iTotal, iName,iDate,iCategory;
     private ImageView iDelete;
+
     private final char ADDITION = '+';
     private final char SUBTRACTION = '-';
     private final char MULTIPLICATION = '*';
     private final char DIVISION = '/';
     private final char EQU = 0;
+
     private double val1 = Double.NaN;
     private double val2;
+    private char ACTION;
+
     private FirebaseAuth mAuth;
     private static final int REQUEST_CODE_CATEGORY = 101;
     private int decimal = 0; //initialize the decimal to 0
-    private final int NONE = 0;
-    private int ACTION = NONE; // Initialize ACTION to some default value (e.g., NONE)
+
     DatabaseReference incomeReference, transactionReference;
 
     //Receive argument for TransactionDetail.class
@@ -113,30 +118,61 @@ public class IncomeFragment extends Fragment {
 
 
         // Set click listeners for number buttons
-        setNumberButtonClickListener(iZero);
-        setNumberButtonClickListener(iOne);
-        setNumberButtonClickListener(iTwo);
-        setNumberButtonClickListener(iThree);
-        setNumberButtonClickListener(iFour);
-        setNumberButtonClickListener(iFive);
-        setNumberButtonClickListener(iSix);
-        setNumberButtonClickListener(iSeven);
-        setNumberButtonClickListener(iEight);
-        setNumberButtonClickListener(iNine);
-        setDecimalButtonClickListener(iDecimal);
+        clickedNumber(iZero);
+        clickedNumber(iOne);
+        clickedNumber(iTwo);
+        clickedNumber(iThree);
+        clickedNumber(iFour);
+        clickedNumber(iFive);
+        clickedNumber(iSix);
+        clickedNumber(iSeven);
+        clickedNumber(iEight);
+        clickedNumber(iNine);
 
+        // Set click listeners for decimal buttons
+        clickedDecimal(iDecimal);
 
-        // Set click listeners for operator buttons
-        setOperatorButtonClickListener(iAdd, ADDITION, "+");
-        setOperatorButtonClickListener(iMultiply, MULTIPLICATION, "x");
-        setOperatorButtonClickListener(iDivide, DIVISION, "÷");
+        iAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addOperation();
+            }
+        });
 
+        iMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                minusOperation();
+            }
+        });
 
-        //Click listener for operation subtraction, equal and delete
-        setButtonClickListener(iMinus, minusClickListener);
-        setButtonClickListener(iEqual, equalClickListener);
-        setImageViewClickListener(iDelete, deleteClickListener);
+        iMultiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                multiplyOperation();
+            }
+        });
 
+        iDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                divideOperation();
+            }
+        });
+
+        iEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                equalOperation();
+            }
+        });
+
+        iDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteOperation();
+            }
+        });
 
         // Set an OnClickListener on the iDate TextView to launch the DatePickerDialog
         iDate.setOnClickListener(new View.OnClickListener() {
@@ -213,7 +249,6 @@ public class IncomeFragment extends Fragment {
         iCategory = v.findViewById(R.id.income_category);
     }
 
-
     private void setCurrentDate(){
         //Get current date and set it to iDate and format it as "yyyy/MM/dd"
         Date currentDate = new Date();
@@ -225,9 +260,8 @@ public class IncomeFragment extends Fragment {
     }
 
     //Add the number into the iTotal based on xml value assigned in IncomeFragment.xml
-    private void setNumberButtonClickListener(Button button) {
+    private void clickedNumber(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Button numberButton = (Button) view;
@@ -240,7 +274,7 @@ public class IncomeFragment extends Fragment {
 
 
     //Add the decimal into iTotal
-    private void setDecimalButtonClickListener(Button button) {
+    private void clickedDecimal(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -262,257 +296,210 @@ public class IncomeFragment extends Fragment {
     }
 
     //For add, multiply and division
-    private void setOperatorButtonClickListener(Button button, final int action, final String operator) {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String input = iTotal.getText().toString();
-                if (input.equals("")) {
-                    Toast.makeText(getActivity(), "Please enter a number", Toast.LENGTH_SHORT).show();
-                } else {
-                    compute();
-                    ACTION = action; // Set the ACTION to the specified action (ADDITION, MULTIPLICATION, or DIVISION)
-                    DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                    iTotal.setText(decimalFormat.format(val1) + operator);
+    private void addOperation(){
 
-                    // Set decimal to 0 and enable the decimal button
-                    decimal = 0;
-                    iDecimal.setEnabled(true);
-                }
-            }
-        });
-    }
+        String input = iTotal.getText().toString();
+        if (input.equals("")) {
+            Toast.makeText(getActivity(), "Cannot start with operation symbol", Toast.LENGTH_SHORT).show();
+        } else {
+            compute();
+            ACTION = ADDITION;
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            iTotal.setText(decimalFormat.format(val1) + "+");
 
-    //For button minus and equal
-    private void setButtonClickListener(Button button, View.OnClickListener clickListener) {
-        button.setOnClickListener(clickListener);
-    }
-
-
-    //For imageview delete
-    private void setImageViewClickListener(ImageView imageView, View.OnClickListener clickListener) {
-        imageView.setOnClickListener(clickListener);
-    }
-
-
-    //To handle the subtraction operation and handle negative numbers and consecutive minus signs
-    private View.OnClickListener minusClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-            String input = iTotal.getText().toString();
-
-            // Check if the input field is empty or ends with an operator
-            if (input.isEmpty() || "+-x÷".contains(input.substring(input.length() - 1))) {
-                // Add a negative sign to start a negative number
-                iTotal.setText(input + "-");
-            } else {
-                // Check if two consecutive minus signs are present, indicating subtraction
-                int lastIndex = input.length() - 1;
-                if (lastIndex >= 0 && input.charAt(lastIndex) == '-') {
-                    iTotal.setText(input + "-");
-                } else {
-                    // Compute the previous operation and set up for subtraction
-                    compute();
-                    ACTION = SUBTRACTION;
-                    DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                    iTotal.setText(decimalFormat.format(val1) + "-");
-                    // Set decimal to 0 and enable the decimal button
-                    decimal = 0;
-                    iDecimal.setEnabled(true);
-                }
-            }
+            //set decimal to 0 and enable the decimal button
+            decimal = 0;
+            iDecimal.setEnabled(true);
         }
-    };
+    }
 
-    // To handle equal operation
-    private View.OnClickListener equalClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            String input = iTotal.getText().toString();
-            if (input.equals("")) {
-                Toast.makeText(getActivity(), "Please enter a numbers", Toast.LENGTH_SHORT).show();
-            } else {
-                // Check if the input contains an operator (+, -, x, ÷)
-                if (input.contains("+") || input.contains("-") || input.contains("x") || input.contains("÷")) {
-                    double result = 0;
-                    String operator = "";
+    private void minusOperation(){
 
-                    // Split the input into operands and operator
-                    String[] tokens;
-                    if (input.contains("+")) {
-                        tokens = input.split("\\+");
-                        operator = "+";
-                    } else if (input.contains("-")) {
-                        tokens = input.split("-");
-                        operator = "-";
-                    } else if (input.contains("x")) {
-                        tokens = input.split("x");
-                        operator = "x";
-                    } else {
-                        tokens = input.split("÷");
-                        operator = "÷";
-                    }
+        String input = iTotal.getText().toString();
+        if (input.equals("")) {
+            Toast.makeText(getActivity(), "Cannot start with negative number", Toast.LENGTH_SHORT).show();
+        } else {
+            compute();
+            ACTION = SUBTRACTION;
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            iTotal.setText(decimalFormat.format(val1) + "-");
 
-                    if (tokens.length == 2) {
-                        double operand1 = Double.parseDouble(tokens[0]);
-                        double operand2 = Double.parseDouble(tokens[1]);
-                        switch (operator) {
-                            case "+":
-                                result = operand1 + operand2;
-                                break;
-                            case "-":
-                                result = operand1 - operand2;
-                                break;
-                            case "x":
-                                result = operand1 * operand2;
-                                break;
-                            case "÷":
-                                if (operand2 != 0) {
-                                    result = operand1 / operand2;
-                                } else {
-                                    handleCalculationError();
-                                    return;
-                                }
-                                break;
-                        }
-                    }
-                    // Set the result in the input field
-                    DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                    iTotal.setText(decimalFormat.format(result));
+            //set decimal to 0 and enable the decimal button
+            decimal = 0;
+            iDecimal.setEnabled(true);
+        }
 
-                    // Update val1 and val2 for subsequent calculations
-                    val1 = result;
-                    val2 = 0;
+    }
 
-                    //check if decimal exist
-                    if (iTotal.getText().toString().contains(".")) {
-                        //Disable decimal button
-                        decimal = 1;
-                        iDecimal.setEnabled(false);
-                    } else {
-                        //enable decimal button
-                        decimal = 0;
-                        iDecimal.setEnabled(true);
-                    }
+    private void multiplyOperation(){
 
-                    // Display the operator used in the calculation
-                    Toast.makeText(getActivity(), operator, Toast.LENGTH_SHORT).show();
-                    return; // Exit the onClick() method after performing the calculation
+        String input = iTotal.getText().toString();
+        if (input.equals("")) {
+            Toast.makeText(getActivity(), "Cannot start with operation symbol", Toast.LENGTH_SHORT).show();
+        } else {
+            compute();
+            ACTION = MULTIPLICATION;
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            iTotal.setText(decimalFormat.format(val1) + "x");
+
+            //set decimal to 0 and enable the decimal button
+            decimal = 0;
+            iDecimal.setEnabled(true);
+        }
+    }
+
+    private void divideOperation(){
+
+        String input = iTotal.getText().toString();
+        if (input.equals("")) {
+            Toast.makeText(getActivity(), "Cannot start with operation symbol", Toast.LENGTH_SHORT).show();
+        } else {
+            compute();
+            ACTION = DIVISION;
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            iTotal.setText(decimalFormat.format(val1) + "÷");
+
+            // Set decimal to 0 and enable the decimal button
+            decimal = 0;
+            iDecimal.setEnabled(true);
+        }
+    }
+
+    private void equalOperation(){
+
+        String input = iTotal.getText().toString();
+        if (input.equals("")) {
+            Toast.makeText(getActivity(), "Please enter a numbers", Toast.LENGTH_SHORT).show();
+        } else {
+            // Check if the input contains an operator (+, -, x, ÷)
+            if (input.contains("+") || input.contains("-") || input.contains("x") || input.contains("÷")) {
+                double result = 0;
+                String operator = "";
+
+                // Split the input into operands and operator
+                String[] tokens;
+                if (input.contains("+")) {
+                    tokens = input.split("\\+");
+                    operator = "+";
+                } else if (input.contains("-")) {
+                    tokens = input.split("-");
+                    operator = "-";
+                } else if (input.contains("x")) {
+                    tokens = input.split("x");
+                    operator = "x";
+                } else {
+                    tokens = input.split("÷");
+                    operator = "÷";
                 }
 
-                // If a valid operator is not found, continue with the existing compute() logic
-                compute();
-                ACTION = EQU;
+                if (tokens.length == 2) {
+                    double operand1 = Double.parseDouble(tokens[0]);
+                    double operand2 = Double.parseDouble(tokens[1]);
+                    switch (operator) {
+                        case "+":
+                            result = operand1 + operand2;
+                            break;
+                        case "-":
+                            result = operand1 - operand2;
+                            break;
+                        case "x":
+                            result = operand1 * operand2;
+                            break;
+                        case "÷":
+                            if (operand2 != 0) {
+                                result = operand1 / operand2;
+                            } else {
+                                handleCalculationError();
+                                return;
+                            }
+                            break;
+                    }
+                }
+                // Set the result in the input field
                 DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                iTotal.setText(decimalFormat.format(val1));
+                iTotal.setText(decimalFormat.format(result));
 
-                // Check if decimal exists
+                // Update val1 and val2 for subsequent calculations
+                val1 = result;
+                val2 = 0;
+
+                //check if decimal exist
                 if (iTotal.getText().toString().contains(".")) {
-                    // Disable decimal button
+                    //Disable decimal button
                     decimal = 1;
                     iDecimal.setEnabled(false);
                 } else {
-                    // Enable decimal button
+                    //enable decimal button
                     decimal = 0;
                     iDecimal.setEnabled(true);
                 }
-            }
-        }
-    };
 
-    //To handle delete operation
-    private View.OnClickListener deleteClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            // Handle error if field empty
-            if (iTotal.getText() == null || iTotal.getText().length() == 0) {
-                iTotal.setText(null); // Set the value to null
-                return;
+                // Display the operator used in the calculation
+                Toast.makeText(getActivity(), operator, Toast.LENGTH_SHORT).show();
+                return; // Exit the onClick() method after performing the calculation
             }
 
+            // If a valid operator is not found, continue with the existing compute() logic
+            compute();
+            ACTION = EQU;
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            iTotal.setText(decimalFormat.format(val1));
+
+            // Check if decimal exists
             if (iTotal.getText().toString().contains(".")) {
                 // Disable decimal button
                 decimal = 1;
                 iDecimal.setEnabled(false);
-
-                // Perform decimal deletion logic
-                if (iTotal.getText().length() > 1) {
-                    CharSequence number = iTotal.getText().toString();
-                    iTotal.setText(number.subSequence(0, number.length() - 1));
-                } else {
-                    // Reset values if decimal flag is not set
-                    val1 = Double.NaN;
-                    val2 = Double.NaN;
-                    iTotal.setText(null);
-                }
-
-                if (!iTotal.getText().toString().contains(".")) {
-                    // Disable decimal button
-                    decimal = 0;
-                    iDecimal.setEnabled(true);
-                }
             } else {
-                // Perform decimal deletion logic
-                if (iTotal.getText().length() > 1) {
-                    CharSequence number = iTotal.getText().toString();
-                    iTotal.setText(number.subSequence(0, number.length() - 1));
-                } else {
-                    // Reset values if decimal flag is not set
-                    val1 = Double.NaN;
-                    val2 = Double.NaN;
-                    iTotal.setText(null);
-                }
+                // Enable decimal button
+                decimal = 0;
+                iDecimal.setEnabled(true);
             }
         }
-    };
-
-    // To retrieve data from firebase based on incomeId receive for TransactionDetail.class
-    private void getDataFromFirebase() {
-
-        //Get data passed for TransactionDetail
-        Bundle args = getArguments();
-
-        // Retrieve the authenticated user's ID
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null) {
-            // User is not authenticated, handle accordingly
-            return;
-        }
-        String userID = currentUser.getUid();
-
-        //Assign incomeId receive for TransactionDetail
-        String incomeId = args.getString("incomeId");
-
-        // Retrieve income name, category, amount and date from Firebase
-        DatabaseReference incomeRef = FirebaseDatabase.getInstance().getReference()
-                .child("Accounts")
-                .child(userID) // Use the authenticated user's ID
-                .child("Income")
-                .child(incomeId);
-
-        incomeRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String incomeCat = dataSnapshot.child("incomeCat").getValue(String.class);
-                    String incomeName = dataSnapshot.child("incomeName").getValue(String.class);
-                    String incomeDate = dataSnapshot.child("incomeDate").getValue(String.class);
-                    String incomeTotal = dataSnapshot.child("incomeTotal").getValue(String.class);
-
-                    iName.setText(incomeName);
-                    iCategory.setText("Category: " +incomeCat);
-                    iTotal.setText(incomeTotal);
-                    iDate.setText("Date: " + incomeDate);
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle error, if any
-            }
-        });
     }
 
+    private void deleteOperation(){
+
+        // Handle error if field empty
+        if (iTotal.getText() == null || iTotal.getText().length() == 0) {
+            iTotal.setText(null); // Set the value to null
+            return;
+        }
+
+        if (iTotal.getText().toString().contains(".")) {
+            // Disable decimal button
+            decimal = 1;
+            iDecimal.setEnabled(false);
+
+            // Perform decimal deletion logic
+            if (iTotal.getText().length() > 1) {
+                CharSequence number = iTotal.getText().toString();
+                iTotal.setText(number.subSequence(0, number.length() - 1));
+            } else {
+                // Reset values if decimal flag is not set
+                val1 = Double.NaN;
+                val2 = Double.NaN;
+                iTotal.setText(null);
+            }
+
+            if (!iTotal.getText().toString().contains(".")) {
+                // Disable decimal button
+                decimal = 0;
+                iDecimal.setEnabled(true);
+            }
+        } else {
+            // Perform decimal deletion logic
+            if (iTotal.getText().length() > 1) {
+                CharSequence number = iTotal.getText().toString();
+                iTotal.setText(number.subSequence(0, number.length() - 1));
+            } else {
+                // Reset values if decimal flag is not set
+                val1 = Double.NaN;
+                val2 = Double.NaN;
+                iTotal.setText(null);
+            }
+        }
+    }
 
     // Open the date picker if user want to select their own date
     private void openDatePickerFunction(){
@@ -545,7 +532,6 @@ public class IncomeFragment extends Fragment {
         datePickerDialog.show();
     }
 
-
     //To do calculation
     private void compute() {
         val2 = 0; // Reset val2 to zero
@@ -553,15 +539,22 @@ public class IncomeFragment extends Fragment {
         if (!Double.isNaN(val1)) {
             String input = iTotal.getText().toString();
 
-            // Handle consecutive minus signs and spaces
-            input = input.replaceAll("(?<=\\d)-(?=\\d)", "- "); // Add space between consecutive minus signs
-
             // Split the input into tokens using regex
-            String[] tokens = input.split(" ");
+            String[] tokens = input.split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)");
 
             if (tokens.length >= 3) {
                 // Get the operator
                 String operator = tokens[1];
+
+                // Check if the operator is '-' and adjust the tokens accordingly
+                if (operator.equals("-")) {
+                    if (tokens.length == 3) {
+                        tokens[2] = "-" + tokens[2];
+                    } else if (tokens.length == 4 && tokens[2].equals("")) {
+                        tokens[2] = "-" + tokens[3];
+                        tokens = Arrays.copyOf(tokens, 3);
+                    }
+                }
 
                 try {
                     // Check if the tokens array contains valid operands
@@ -611,12 +604,58 @@ public class IncomeFragment extends Fragment {
         iTotal.setText("");
     }
 
-
     //Handle calculation error
     private void handleCalculationError() {
-        Toast.makeText(getActivity(), "Error: Invalid calculation", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Error: Division by zero", Toast.LENGTH_SHORT).show();
+        iTotal.setText(""); // Clear the input field
     }
 
+
+    // To retrieve data from firebase based on incomeId receive for TransactionDetail.class
+    private void getDataFromFirebase() {
+
+        //Get data passed for TransactionDetail
+        Bundle args = getArguments();
+
+        // Retrieve the authenticated user's ID
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            // User is not authenticated, handle accordingly
+            return;
+        }
+        String userID = currentUser.getUid();
+
+        //Assign incomeId receive for TransactionDetail
+        String incomeId = args.getString("incomeId");
+
+        // Retrieve income name, category, amount and date from Firebase
+        DatabaseReference incomeRef = FirebaseDatabase.getInstance().getReference()
+                .child("Accounts")
+                .child(userID) // Use the authenticated user's ID
+                .child("Income")
+                .child(incomeId);
+
+        incomeRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String incomeCat = dataSnapshot.child("incomeCat").getValue(String.class);
+                    String incomeName = dataSnapshot.child("incomeName").getValue(String.class);
+                    String incomeDate = dataSnapshot.child("incomeDate").getValue(String.class);
+                    String incomeTotal = dataSnapshot.child("incomeTotal").getValue(String.class);
+
+                    iName.setText(incomeName);
+                    iCategory.setText("Category: " +incomeCat);
+                    iTotal.setText(incomeTotal);
+                    iDate.setText("Date: " + incomeDate);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error, if any
+            }
+        });
+    }
 
     //Insert data into Firebase
     private void insertIncomeData(){
@@ -637,6 +676,18 @@ public class IncomeFragment extends Fragment {
 
         if(incomeAmount.isEmpty()){
             Toast.makeText(getActivity(), "Please enter the number", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check if debtAmount is zero
+        if (incomeAmount.equals("0")) {
+            Toast.makeText(getActivity(), "Income amount cannot be zero", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check if debtAmount contains +, /, or *
+        if (incomeAmount.contains("+") || incomeAmount.contains("÷") || incomeAmount.contains("*") || incomeAmount.contains("-")) {
+            Toast.makeText(getActivity(), "Income amount cannot contain +, -, ÷, or *", Toast.LENGTH_SHORT).show();
             return;
         }
 
