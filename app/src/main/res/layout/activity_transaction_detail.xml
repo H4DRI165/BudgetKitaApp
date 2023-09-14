@@ -19,7 +19,9 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginStart="10dp"
                 android:id="@+id/getEntry"
+                android:text="value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
@@ -27,7 +29,9 @@
 
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp">
+
             <TextView
                 android:id="@+id/noteLabelTextView"
                 android:layout_width="wrap_content"
@@ -37,13 +41,15 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginStart="10dp"
                 android:id="@+id/getNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp">
             <TextView
                 android:id="@+id/categoryLabelTextView"
                 android:layout_width="wrap_content"
@@ -53,13 +59,15 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginStart="10dp"
                 android:id="@+id/getCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp">
             <TextView
                 android:id="@+id/locationLabelTextView"
                 android:layout_width="wrap_content"
@@ -70,6 +78,7 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:layout_marginStart="10dp"
                 android:id="@+id/getLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +86,8 @@
                 android:visibility="gone"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp">
             <TextView
                 android:id="@+id/totalLabelTextView"
                 android:layout_width="wrap_content"
@@ -87,13 +97,15 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginStart="10dp"
                 android:id="@+id/getTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp">
             <TextView
                 android:id="@+id/dateLabelTextView"
                 android:layout_width="wrap_content"
@@ -103,6 +115,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:layout_marginStart="10dp"
                 android:id="@+id/getDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

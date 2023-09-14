@@ -714,7 +714,7 @@ public class IncomeFragment extends Fragment {
                     .child("Accounts")
                     .child(mAuth.getCurrentUser().getUid())
                     .child("Income");
-                    //.child(incomeId);
+
 
             //Update the income detail using IncomeID
             String finalIncomeCat = incomeCat;
@@ -723,7 +723,7 @@ public class IncomeFragment extends Fragment {
                         public void onSuccess(Void unused) {
                             Toast.makeText(getActivity(), "Entry update successfully", Toast.LENGTH_SHORT).show();
 
-                            // Inside saveLocation button's onClick() method in EditLocation activity
+
                             Intent resultIntent = new Intent();
                             resultIntent.putExtra("updateName", incomeName);
                             resultIntent.putExtra("updateCategory", finalIncomeCat);
