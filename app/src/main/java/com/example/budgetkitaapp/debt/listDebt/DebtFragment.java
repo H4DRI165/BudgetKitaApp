@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.budgetkitaapp.R;
+import com.example.budgetkitaapp.TransactionHistory;
 import com.example.budgetkitaapp.adapter.DebtAdapter;
 import com.example.budgetkitaapp.debt.addDebt.AddDebt;
 import com.example.budgetkitaapp.debt.debtClass.Debt;
@@ -29,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -39,9 +41,10 @@ import java.util.Locale;
 public class DebtFragment extends Fragment {
 
     private Button addDebt;
-    private TextView dAmount;
+    private TextView dAmount, debtMonthly;
     private RecyclerView recyclerView;
     double totalDebt = 0;
+    double monthlyDebtAmount = 0;
     private FirebaseAuth mAuth;
     private DatabaseReference debtRef;
     private List<Debt> debtList = new ArrayList<>(); // Initialize the list
@@ -71,6 +74,8 @@ public class DebtFragment extends Fragment {
                 .child(mAuth.getCurrentUser().getUid())
                 .child("Debt");
 
+        getDebtThisMonth();
+
         //Retrieve the total debt from firebase
         getDebtAmount();
 
@@ -87,10 +92,61 @@ public class DebtFragment extends Fragment {
         return view;
     }
 
+    private void getDebtThisMonth() {
+        debtRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                monthlyDebtAmount = 0; // Initialize the total debt
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+                Calendar calendar = Calendar.getInstance();
+
+                // Get the current date
+                Date currentDate = calendar.getTime();
+                calendar.set(Calendar.DAY_OF_MONTH, 1); // Set the day to 1st of the month
+
+                for (DataSnapshot debtSnapshot : dataSnapshot.getChildren()) {
+                    String debtStatus = debtSnapshot.child("debtStatus").getValue(String.class);
+                    String debtDateStr = debtSnapshot.child("debtDate").getValue(String.class);
+
+                    if (debtStatus != null && debtStatus.equals("Paid") && debtDateStr != null) {
+                        try {
+                            Date debtDate = dateFormat.parse(debtDateStr);
+
+                            // Check if the debt's date falls within the current month
+                            if (debtDate.after(calendar.getTime()) || debtDate.equals(calendar.getTime())) {
+                                String debtTotalStr = debtSnapshot.child("debtTotal").getValue(String.class);
+                                double debtTotal = 0;
+
+                                try {
+                                    debtTotal = Double.parseDouble(debtTotalStr);
+                                } catch (NumberFormatException e) {
+                                    // Handle parsing error
+                                }
+
+                                monthlyDebtAmount += debtTotal;
+                            }
+                        } catch (ParseException e) {
+                            // Handle date parsing error
+                        }
+                    }
+                }
+
+                // Set the total debt to amount
+                debtMonthly.setText("RM " + String.valueOf(monthlyDebtAmount));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle database error
+            }
+        });
+    }
+
     private void assignVariable(View view){
 
         addDebt = view.findViewById(R.id.buttonAddDebt);
         dAmount =view.findViewById(R.id.tvCalculate);
+        debtMonthly = view.findViewById(R.id.debtMonthAmount);
         recyclerView = view.findViewById(R.id.recyclerView);
 
         setRecyclerView();
@@ -101,6 +157,7 @@ public class DebtFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
     }
+
     private void getDebtAmount() {
         debtRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -141,8 +198,10 @@ public class DebtFragment extends Fragment {
         debtRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 // Clear the existing data before adding new items
                 debtList.clear();
+                //List<Debt> debtList = new ArrayList<>();
 
                 // Iterate through the debt entries and extract data
                 for (DataSnapshot debtSnapshot : snapshot.getChildren()) {
@@ -150,9 +209,11 @@ public class DebtFragment extends Fragment {
                     String debtDate = debtSnapshot.child("debtDate").getValue(String.class);
                     String debtTotal = debtSnapshot.child("debtTotal").getValue(String.class);
                     String debtStatus = debtSnapshot.child("debtStatus").getValue(String.class);
+                    String debtDatePaid = debtSnapshot.child("debtDatePaid").getValue(String.class);
+                    String debtId = debtSnapshot.getKey(); // Get the key of the current snapshot as debtID
 
                     // Create a Debt object or data structure to hold this data
-                    Debt debt = new Debt(debtName, debtTotal, debtDate, debtStatus);
+                    Debt debt = new Debt(debtName, debtTotal, debtDate, debtStatus,debtDatePaid, debtId);
 
                     // Add the Debt object to a List or data structure for sorting later
                     debtList.add(debt);
@@ -192,7 +253,6 @@ public class DebtFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getDebtAmount(); // Fetch and update totalDebt value
+        getDebtAmount();
     }
-
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +32,7 @@ public class AddDebt extends AppCompatActivity {
 
     private Button dZero, dOne, dTwo, dThree, dFour, dFive, dSix, dSeven, dEight, dNine;
     private Button dAdd, dMinus, dMultiply, dDivide, dEqual, dDecimal,dSave;
-    private TextView dTotal, dName,dDate,dCategory;
+    private TextView dTotal, dName,dDate;
     private ImageView dDelete;
 
     private final char ADDITION = '+';
@@ -59,8 +60,24 @@ public class AddDebt extends AppCompatActivity {
         // Call assignVariable() and pass v as a parameter
         assignVariable();
 
-        //Call setCurrentDate() to get current date and set it to iDate
-        setCurrentDate();
+        //Check if there intent from debtDetail.class
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("entry")) {
+
+            String entry = intent.getStringExtra("entry");
+            String date = intent.getStringExtra("date");
+            String amount = intent.getStringExtra("amount");
+
+            dName.setText(entry);
+            dTotal.setText(amount);
+            dDate.setText("Date: " + date);
+
+        }else{
+
+            //Call setCurrentDate() to get current date and set it to iDate
+            setCurrentDate();
+
+        }
 
         // Set click listeners for number buttons
         setNumberButtonClickListener(dZero);
@@ -111,6 +128,7 @@ public class AddDebt extends AppCompatActivity {
 
         // Enable arrow icon at top to go back to the previous activity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void authenticateUser(){
@@ -519,6 +537,7 @@ public class AddDebt extends AppCompatActivity {
         String debtAmount = dTotal.getText().toString().trim();
         String debtDate = dDate.getText().toString().trim().substring(6);
         String debtStatus = "Not Paid";
+        String debtDatePaid = "-";
 
         //Check if the field have value
         //If not it will point to the empty value
@@ -534,7 +553,7 @@ public class AddDebt extends AppCompatActivity {
         }
 
         //Create a debt object with the data
-        Debt debt = new Debt(debtName, debtAmount, debtDate, debtStatus);
+        Debt debt = new Debt(debtName, debtAmount, debtDate, debtStatus, debtDatePaid);
         debtReference.push().setValue(debt).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

@@ -276,7 +276,6 @@ public class TransactionDetail extends AppCompatActivity {
     }
 
 
-
     //Display the arrow on top to go back to previous activity
     @Override
     public boolean onOptionsItemSelected (MenuItem item){
