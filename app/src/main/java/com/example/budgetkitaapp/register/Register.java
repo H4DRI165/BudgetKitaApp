@@ -146,7 +146,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     // Check if the full name is empty
     private boolean validateUserName(String username) {
         if (username.isEmpty()) {
-            editTextUserName.setError("Full name is required!");
+            editTextUserName.setError("Username is required!");
             editTextUserName.requestFocus();
             return false;
         }
