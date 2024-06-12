@@ -1,9 +1,5 @@
 package com.example.budgetkitaapp.map.AddLocation;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.map.listLocation.map;
@@ -54,6 +54,20 @@ public class AddLocation extends AppCompatActivity {
             public void onClick(View view) {
                 String locationNameValue = locationName.getText().toString().trim();
                 String locationDetailValue = locationDetail.getText().toString().trim();
+
+                //Check if the field have value
+                //If not it will point to the empty value
+                if(locationNameValue.isEmpty()){
+                    locationName.setError("Please enter location name");
+                    locationName.requestFocus();
+                    return;
+                }
+
+                if(locationDetailValue.isEmpty()){
+                    locationDetail.setError("Please enter location detail");
+                    locationDetail.requestFocus();
+                    return;
+                }
 
                 // Capitalize the first letter of locationNameValue
                 if (!locationNameValue.isEmpty()) {

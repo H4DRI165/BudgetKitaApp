@@ -1,19 +1,21 @@
 package com.example.budgetkitaapp.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.budgetkitaapp.forgotPassword.ForgotPassword;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.budgetkitaapp.HomeActivity;
 import com.example.budgetkitaapp.R;
+import com.example.budgetkitaapp.forgotPassword.ForgotPassword;
 import com.example.budgetkitaapp.register.Register;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -105,11 +107,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressBar.setVisibility(View.VISIBLE);
 
+        //  Function to close the keyboard
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editTextEmail.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(editTextPassword.getWindowToken(), 0);
+
         // Authenticate the user using the email and password
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 // redirect to home page
                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
             } else {
                 // if user does not exist in Firebase
                 Toast.makeText(MainActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();

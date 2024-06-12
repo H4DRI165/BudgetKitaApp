@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/baseline_home_24"
+        />
+
+    <item
+        android:id="@+id/transaction"
+        android:title="Transaction"
+        android:icon="@drawable/baseline_add_circle_24"
+       />
+
+    <item
+        android:id="@+id/debt"
+        android:title="Debt"
+        android:icon="@drawable/baseline_account_balance_wallet_24"
+        />
+
+    <item
+        android:id="@+id/other"
+        android:title="Other"
+        android:icon="@drawable/baseline_view_headline_24"
+        />
+
+</menu>

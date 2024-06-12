@@ -1,8 +1,5 @@
 package com.example.budgetkitaapp.transaction.viewTransaction;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.transaction.editTransaction.EditTransaction;

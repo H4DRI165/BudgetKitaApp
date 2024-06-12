@@ -1,7 +1,5 @@
 package com.example.budgetkitaapp;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 public class TransactionHistory {
     private String entry, date, incomeValue, expenseValue;
     private String incomeId, expenseId;

@@ -1,8 +1,5 @@
 package com.example.budgetkitaapp.other;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.budgetkitaapp.HomeActivity;
@@ -220,7 +220,7 @@ public class UserProfile extends AppCompatActivity {
                         //go back to Home activity
                         Intent userProfile = new Intent(UserProfile.this, HomeActivity.class);
                         Toast.makeText(UserProfile.this, "Success Update", Toast.LENGTH_SHORT).show();
-                        startActivity(userProfile);
+                        onBackPressed();
                     }
 
                 }
@@ -265,7 +265,7 @@ public class UserProfile extends AppCompatActivity {
     //Open the gallery
     private void openGallery() {
         Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickPhoto, REQUEST_IMAGE_GALLERY);
 
     }
@@ -289,7 +289,6 @@ public class UserProfile extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(UserProfile.this, OtherFragment.class));
     }
 }
 

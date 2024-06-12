@@ -1,20 +1,19 @@
 package com.example.budgetkitaapp.transaction.hostActivity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.databinding.FragmentTransactionBinding;
 import com.example.budgetkitaapp.transaction.expense.ExpenseFragment;
-import com.example.budgetkitaapp.transaction.listTransaction.ViewTransactionFragment;
 import com.example.budgetkitaapp.transaction.income.IncomeFragment;
+import com.example.budgetkitaapp.transaction.listTransaction.ViewTransactionFragment;
 
 public class TransactionFragment extends Fragment {
 

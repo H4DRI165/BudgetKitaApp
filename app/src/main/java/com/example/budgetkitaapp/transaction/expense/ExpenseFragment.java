@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.budgetkitaapp.debt.addDebt.AddDebt;
-import com.example.budgetkitaapp.map.listLocation.map;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.budgetkitaapp.R;
-import com.example.budgetkitaapp.transaction.income.Income;
+import com.example.budgetkitaapp.map.listLocation.map;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -772,7 +769,7 @@ public class ExpenseFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getActivity(), "Successfully add expense!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Expense has been added successfully", Toast.LENGTH_SHORT).show();
 
                         eName.setText(null);
                         eCategory.setText("Please select category");

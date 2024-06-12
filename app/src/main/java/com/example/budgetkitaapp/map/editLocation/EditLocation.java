@@ -1,9 +1,5 @@
 package com.example.budgetkitaapp.map.editLocation;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.map.AddLocation.userLocation;
@@ -106,7 +106,7 @@ public class EditLocation extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(EditLocation.this, "Location saved successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditLocation.this, "Location update successfully", Toast.LENGTH_SHORT).show();
 
                                         // Inside saveLocation button's onClick() method in EditLocation activity
                                         Intent resultIntent = new Intent();
@@ -121,7 +121,7 @@ public class EditLocation extends AppCompatActivity {
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(EditLocation.this, "Failed to save location: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditLocation.this, "Failed to update location: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     }

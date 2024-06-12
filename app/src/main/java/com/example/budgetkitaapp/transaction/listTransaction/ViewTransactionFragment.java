@@ -6,13 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -28,6 +21,12 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.TransactionHistory;
@@ -248,7 +247,7 @@ public class ViewTransactionFragment extends Fragment {
 
                     // Check if end date is not selected
                     if (selectedEndDate.equals("End Date")) {
-                        Toast.makeText(getContext(), "Please select an end date", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Please select a end date", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

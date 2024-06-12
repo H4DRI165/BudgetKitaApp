@@ -1,8 +1,5 @@
 package com.example.budgetkitaapp.debt.addDebt;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -15,6 +12,9 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.debt.debtClass.Debt;

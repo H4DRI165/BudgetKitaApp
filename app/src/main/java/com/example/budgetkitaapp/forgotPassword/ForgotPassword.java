@@ -1,7 +1,5 @@
 package com.example.budgetkitaapp.forgotPassword;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.budgetkitaapp.R;
 import com.example.budgetkitaapp.login.MainActivity;
@@ -32,7 +32,7 @@ public class ForgotPassword extends AppCompatActivity {
 
         //Assign variable
         mAuth = FirebaseAuth.getInstance();
-        edtEmail = (TextInputEditText) findViewById(R.id.forgotLoginEmail);
+        edtEmail = findViewById(R.id.forgotLoginEmail);
         btnReset = (Button) findViewById(R.id.resetBtn);
 
         // Set listener at reset password button
